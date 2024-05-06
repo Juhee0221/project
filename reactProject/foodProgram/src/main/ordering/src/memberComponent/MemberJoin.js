@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const MemberJoin = () =>{
     const navigator = useNavigate();
+    
+    
     // 주소창 띄우기
     const [enroll_company, setEnroll_company] = useState({
         memberAddr:'',
@@ -38,7 +40,6 @@ const MemberJoin = () =>{
    const [checkCode , setCheckCode] = useState('')
 
     // sms 보내기
-    const [memberTel , setMemberTel] = useState()
     const [memberVO , setMemberVo] = useState(memberList)
 
    
@@ -62,7 +63,6 @@ const MemberJoin = () =>{
    
     const memberJoin = (e) =>{
         setMemberVo({...memberVO , [e.target.name] : e.target.value})
-        console.log(e.target.value)
     }
     const memberRef = useRef();
 
@@ -82,16 +82,20 @@ const MemberJoin = () =>{
             // memberRef.current.focus();
             return;
         }
+        if(password == '' || password != memberVO.memberPw){
+            alert("비밀번호 확인 버튼을 눌러주세요.")
+            return;
+        }
         if(memberVO.memberEmail == ''){
             alert("이메일은 필수입력 사항입니다.")
             // memberRef.current.focus();
             return;
         }
-        // if(memberVO.memberAddr == ''){
-        //     alert("주소를 입력해주세요.")
-        //     // memberRef.current.focus();
-        //     return;
-        // }
+        if(memberVO.memberAddr == ''){
+           alert("주소를 입력해주세요.")
+           // memberRef.current.focus();
+            return;
+        }
         if(randCode == ''){
             alert("휴대폰 인증을 해주세요.")
             // memberRef.current.focus();
@@ -148,13 +152,13 @@ const MemberJoin = () =>{
                     <div className="join-middle">
                         <span  className="join-icon"><img src={process.env.PUBLIC_URL + '/images/addressIcon.png'}/></span>
                         <input className="join-input" placeholder="주소"  type="text" 
-                               required={true} name="memberAddr" onChange={memberJoin} value={enroll_company.address}/>
-                        <button onClick={handleComplete} className="join-btn"  onChange={memberJoin}>우편번호 찾기</button>
+                               required={true} name="memberAddr" onChange={memberJoin} value={memberVO.memberAddr}/>
+                        <button onClick={handleComplete} className="join-btn" >우편번호 찾기</button>
                     </div>
                     <div className="join-middle">
                         <span className="join-icon"></span>
                         <input type="text" placeholder="상세주소" name="addrDetail" className="join-input"  onChange={memberJoin}></input>
-                        {popup && <Post company={enroll_company} setcompany={setEnroll_company}></Post>}
+                        {popup && <Post company={memberVO} setcompany={setMemberVo}></Post>}
                     </div>
                     <div className="join-middle">
                         <span className="join-icon"><img src={process.env.PUBLIC_URL + '/images/telIcon.png'}/></span>

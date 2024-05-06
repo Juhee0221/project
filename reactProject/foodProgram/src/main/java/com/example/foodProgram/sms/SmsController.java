@@ -1,8 +1,7 @@
 package com.example.foodProgram.sms;
 
-import com.example.foodProgram.VO.MemberVO;
+import com.example.foodProgram.member.VO.MemberVO;
 import jakarta.annotation.Resource;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;

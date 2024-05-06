@@ -1,4 +1,4 @@
-package com.example.foodProgram.controller;
+package com.example.foodProgram.member.service.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 

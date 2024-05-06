@@ -1,4 +1,4 @@
-package com.example.foodProgram.VO;
+package com.example.foodProgram.member.VO;
 
 import lombok.Data;
 
@@ -13,4 +13,5 @@ public class MemberVO {
     private String memberAddr;
     private String addrDetail;
     private String joinDate;
+    private String memberRoll;
 }

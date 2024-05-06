@@ -4,6 +4,8 @@ import "./Post.css";
 
 const Post = (props) => {
 
+    console.log(props)
+
     const complete = (data) =>{
         let fullAddress = data.address;
         let extraAddress = '';
@@ -23,7 +25,7 @@ const Post = (props) => {
 
         props.setcompany({
             ...props.company,
-            address:fullAddress,
+            memberAddr:fullAddress,
         })
     }
 

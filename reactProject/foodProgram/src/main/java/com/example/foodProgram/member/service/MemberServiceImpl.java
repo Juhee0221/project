@@ -1,6 +1,6 @@
-package com.example.foodProgram.service;
+package com.example.foodProgram.member.service;
 
-import com.example.foodProgram.VO.MemberVO;
+import com.example.foodProgram.member.VO.MemberVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,5 +14,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void joinMember(MemberVO memberVO) {
         sqlSession.insert("memberMapper.joinMember", memberVO);
+    }
+
+    @Override
+    public MemberVO memberLogin(MemberVO memberVO) {
+        return sqlSession.selectOne("memberMapper.memberLogin", memberVO);
     }
 }

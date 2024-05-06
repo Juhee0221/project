@@ -13,7 +13,7 @@ const SuccessJoin = () =>{
          </div>
          
          <div className="success-footer">
-            <button>주문하러가기</button>
+            <button onClick={() => navigator("/login")}>로그인</button>
             <button onClick={() => navigator("/")}>홈</button>
          </div>
         </>

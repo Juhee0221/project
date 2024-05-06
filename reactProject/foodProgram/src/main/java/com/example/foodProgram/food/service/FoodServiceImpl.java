@@ -1,4 +1,4 @@
-package com.example.foodProgram.service;
+package com.example.foodProgram.food.service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
