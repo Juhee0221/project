@@ -1,0 +1,21 @@
+.main-header{
+    border: 1px solid #ccc;
+    height: 150px;
+    display: flex;
+    text-align: center;
+    background-color: #97cda5;
+}
+.cuser{
+    cursor: pointer;
+}
+.side-menu{
+    width: 20%;
+}
+.main_title{
+    width: 60%;
+    font-size: 30px;
+}
+.spot-menu{
+    width: 20%;
+}
+

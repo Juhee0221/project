@@ -1,0 +1,40 @@
+.success-header{
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header-text {
+
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+    margin-top: 150px;
+    height: 250px;
+    padding: 10px;
+}
+.header-text h2{
+    padding: 10px;
+    font-size: 45px;
+}
+.header-text span{
+    font-size: 20px;
+}
+.success-footer{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+.success-footer button{
+    margin-top: 80px;
+    margin-left: 10px;
+    width: 200px;
+    height: 30px;
+    background-color: #97cda5;
+    border-radius: 5px;
+    border: none;
+}
+.success-footer button:hover{
+    cursor: pointer;
+    background-color: #0c431b;
+    color: #fff;
+}

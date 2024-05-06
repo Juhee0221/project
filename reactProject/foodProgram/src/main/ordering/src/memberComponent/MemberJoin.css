@@ -1,0 +1,77 @@
+.join-container{
+}
+.join-content{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 80px;
+    height: 800px;
+}
+.join-header{
+    margin: 0 auto;
+    width: 80%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px 15px 0px 0px ;
+    display: flex;
+    align-items: center;
+}
+.join-middle{
+    margin: 0 auto;
+    width: 80%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+}
+.join-footer{
+    margin: 0 auto;
+    width: 80%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 0px 0px 15px 15px ;
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.joinFooter{
+    margin: 0 auto;
+    width: 80%;
+    height: 40px;
+    padding: 10px;
+}
+.join-icon{
+    width: 10%;
+    padding: 5px;
+}
+.join-input{
+    width: 60%;
+    height: 35px;
+    outline: none;
+    border: none;
+}
+.join-btn{
+    width: 30%;
+    height: 30px;
+    border: none;
+    background-color: #97cda5;
+    border-radius: 5px;
+}
+.join-btn:hover{
+    cursor: pointer;
+}
+.join-button{
+    border: none;
+    border-radius: 15px;
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    background-color: #97cda5;
+}
+.join-button:hover{
+    cursor: pointer;
+    background-color: #0c431b;
+    color: #fff;
+}
