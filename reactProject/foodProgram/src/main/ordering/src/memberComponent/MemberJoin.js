@@ -43,7 +43,13 @@ const MemberJoin = () =>{
     const [memberVO , setMemberVo] = useState(memberList)
 
    
-    const sendSms = (e) =>{
+    const sendSms = () =>{
+        if (memberVO.memberTel == ''){
+            alert("휴대전화를 입력해주세요.")
+            return;
+        }else{
+            alert("입력해주신 전화번호로 인증번호를 발송하였습니다.")
+        }
         axios.post("/sendSms", memberVO)
         .then(response =>{
             console.log("@@@@" + response.data)
@@ -64,22 +70,28 @@ const MemberJoin = () =>{
     const memberJoin = (e) =>{
         setMemberVo({...memberVO , [e.target.name] : e.target.value})
     }
-    const memberRef = useRef();
+    const memberName = useRef();
+    const memberId = useRef();
+    const memberPw = useRef();
+    const memberPost = useRef();
+    const memberEmail = useRef();
+    const memberAddr = useRef();
+    const randCodeRef = useRef();
 
     const JoinMember = () =>{
         if(memberVO.memberName == ''){
             alert("이름은 필수입력 사항입니다.")
-            // memberRef.current.focus();
+            memberName.current.focus();
             return;
         }
         if(memberVO.memberId == ''){
             alert("아이디는 필수입력 사항입니다.")
-            // memberRef.current.focus();
+            memberId.current.focus();
             return;
         }
         if(memberVO.memberPw == ''){
             alert("비밀번호는 필수입력 사항입니다.")
-            // memberRef.current.focus();
+            memberPw.current.focus();
             return;
         }
         if(password == '' || password != memberVO.memberPw){
@@ -88,17 +100,17 @@ const MemberJoin = () =>{
         }
         if(memberVO.memberEmail == ''){
             alert("이메일은 필수입력 사항입니다.")
-            // memberRef.current.focus();
+            memberEmail.current.focus();
             return;
         }
         if(memberVO.memberAddr == ''){
            alert("주소를 입력해주세요.")
-           // memberRef.current.focus();
+           memberAddr.current.focus();
             return;
         }
         if(randCode == ''){
             alert("휴대폰 인증을 해주세요.")
-            // memberRef.current.focus();
+            randCodeRef.current.focus();
             return;
         }
 
@@ -116,11 +128,11 @@ const MemberJoin = () =>{
                 <div className="join-content">
                     <div className="join-header">
                         <span className="join-icon"><img src={process.env.PUBLIC_URL + '/images/usericon.png'}/></span>
-                        <input type="text" name="memberId" placeholder=" 아이디" onChange={memberJoin} className="join-input"></input>
+                        <input ref={memberId} type="text" name="memberId" placeholder=" 아이디" onChange={memberJoin} className="join-input"></input>
                     </div>
                     <div className="join-middle">
                         <span className="join-icon"><img src={process.env.PUBLIC_URL + '/images/pwicon.png'}/></span>
-                        <input type="password" name="memberPw" placeholder=" 비밀번호"  onChange={memberJoin} className="join-input"></input>
+                        <input ref={memberPw} type="password" name="memberPw" placeholder=" 비밀번호"  onChange={memberJoin} className="join-input"></input>
                     </div>
                     <div className="join-middle">
                         <span className="join-icon"><img src={process.env.PUBLIC_URL + '/images/pwicon.png'}/></span>
@@ -135,41 +147,42 @@ const MemberJoin = () =>{
                                 // memberRef.current.focus();
                                 alert("입력하신 비밀번호가 맞지 않습니다.")
                                 return;
-                            } 
+                            }else{
+                                alert("비밀번호 확인이 완료되었습니다.")
+                            }
                             }}>비밀번호 확인</button>
                     </div>
                     <div className="join-footer">
                         <span className="join-icon"><img src={process.env.PUBLIC_URL + '/images/emailIcon.png'}/></span>
-                        <input type="text" name="memberEmail" placeholder=" 이메일(비밀번호 등 본인확인용)" className="join-input"
+                        <input ref={memberEmail} type="text" name="memberEmail" placeholder=" 이메일(비밀번호 등 본인확인용)" className="join-input"
                                onChange={memberJoin}
                         />
                     </div>
 
                     <div className="join-header">
                         <span className="join-icon"><img src={process.env.PUBLIC_URL + '/images/usericon.png'}/></span>
-                        <input  className="join-input" type="text" name="memberName" placeholder=" 이름"  onChange={memberJoin}></input>
+                        <input ref={memberName} className="join-input" type="text" name="memberName" placeholder=" 이름"  onChange={memberJoin}></input>
                     </div>
                     <div className="join-middle">
                         <span  className="join-icon"><img src={process.env.PUBLIC_URL + '/images/addressIcon.png'}/></span>
                         <input className="join-input" placeholder="주소"  type="text" 
                                required={true} name="memberAddr" onChange={memberJoin} value={memberVO.memberAddr}/>
-                        <button onClick={handleComplete} className="join-btn" >우편번호 찾기</button>
+                        <button onClick={handleComplete} className="join-btn" ref={memberPost} >우편번호 찾기</button>
                     </div>
+
                     <div className="join-middle">
                         <span className="join-icon"></span>
-                        <input type="text" placeholder="상세주소" name="addrDetail" className="join-input"  onChange={memberJoin}></input>
+                        <input ref={memberAddr} type="text" placeholder="상세주소" name="addrDetail" className="join-input"  onChange={memberJoin}></input>
                         {popup && <Post company={memberVO} setcompany={setMemberVo}></Post>}
                     </div>
                     <div className="join-middle">
                         <span className="join-icon"><img src={process.env.PUBLIC_URL + '/images/telIcon.png'}/></span>
                         <input className="join-input" type="text" name="memberTel" onChange={memberJoin} placeholder="전화번호" />
-                        <button type="button" onClick={() => {sendSms()
-                            alert("입력해주신 전화번호로 인증번호를 발송하였습니다.")
-                        }} className="join-btn">인증번호받기</button>
+                        <button type="button" onClick={sendSms} className="join-btn">인증번호받기</button>
                     </div>
                     <div className="join-footer">
                             <div className="join-icon"></div>
-                            <input type="text" className="join-input" onChange={e => {
+                            <input ref={randCodeRef} type="text" className="join-input" onChange={e => {
                                 setRandCode(e.target.value)
                             }} placeholder="인증번호를 입력해주세요."></input>
                             <button className="join-btn" type="button" onClick={(e) => {
